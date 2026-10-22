@@ -13,4 +13,6 @@ This is how the classis mode is right now, we have credits which are basically t
 This is the ending screen after we either quit or lose our lives or finish our credits
 
 *AI help was taken (unfortunately i ran into errors which i lowkey couldnt figure out)*
-*Took help from youtube, google etc aswell*
+  *Took help from youtube, google etc aswell*
+
+  P.S. easiest way to start the game is to run the main file (claw_machine.py) as administrator and then entering "python claw_machine.py" 
