@@ -1,5 +1,3 @@
-
-
 import os
 import sys
 import time
@@ -61,7 +59,7 @@ COMMENTS = ["The claw is doing its best.. *allegedly*",
             "Skill issue?",
             "An investment in shiny things",
             "The claw requests a performance review"
-]
+           ]
 
 ACHIEVEMENTS = {
     "first": "First Contact",
@@ -193,25 +191,18 @@ def unlock(game, achievement_id):
 def check_achievements(game):
     if game["delivered"] >= 1:
         unlock(game, "first")
-
     if game["delivered"] >= 10:
         unlock(game, "goblin")
-
     if game["hazards"] >= 2:
         unlock(game, "hazards")
-
     if game["misses"] >= 5:
         unlock(game, "unlucky")
-
     if len(game["types"]) == 4:
         unlock(game, "collector")
-
     if game["rare_streak"] >= 3:
         unlock(game, "combo")
-
     if game["score"] >= 250:
         unlock(game, "big_score")
-
     if game["delivered"] > 0 and 3 in game["types"]:
         unlock(game, "legendary")
 
@@ -263,13 +254,11 @@ def draw(game):
             text_at(side, 1, "M: Toggle sound")
         elif y == 11:
             text_at(side, 1, "Q: Quit run")
-
         if y == 13:
             text_at(side, 0, "+" + "-" * (PANEL - 4) + "+")
         elif y in (14, 15):
             text_at(side, 0, "|")
             text_at(side, PANEL - 3, "|")
-
             start = (y - 14) * (PANEL - 4)
 
             for i, prize_type in enumerate(
@@ -309,31 +298,24 @@ def lose_life(game, reason):
 
 def grab(game):
     candidates = []
-
     for obj in game["objects"]:
         if obj["x"] == game["x"]:
             candidates.append(obj)
-
     if not candidates:
         lose_life(game, "MISSSS! AHAHABSOLOUTELY NOTHINGGG.")
         game["misses"] += 1
         game["rare_streak"] = 0
         play_sound("miss")
         return
-
     obj = max(candidates, key=lambda item: item["y"])
-
     symbol, name, points, chance, penalty = PRIZES[obj["type"]]
-
     if random.random() > chance:
         lose_life(game, "MAMMA MIA!! THE PRIZE SLIPPED")
         game["misses"] += 1
         game["rare_streak"] = 0
         play_sound("miss")
         return
-
     game["objects"].remove(obj)
-
     if obj["hazard"]:
         game["score"] -= penalty
         game["hazards"] += 1
@@ -341,7 +323,6 @@ def grab(game):
         lose_life(game, "HAZARDDDD! Lost " + str(penalty) + " points!")
         play_sound("hazard")
         return
-
     game["held"] = obj
     game["message"] = "Prize grabbed!"
     play_sound("grab")
@@ -349,7 +330,6 @@ def grab(game):
 
 def deliver(game):
     obj = game["held"]
-
     if obj is None:
         return
 
@@ -365,17 +345,14 @@ def deliver(game):
         game["rare_streak"] += 1
     else:
         game["rare_streak"] = 0
-
     if prize_type == 3:
         game["message"] = "JACKPOTTTT! +" + str(points)
         play_sound("jackpot")
     else:
         game["message"] = name + " prize delivered! +" + str(points)
         play_sound("grab")
-
     if name not in data["journal"]:
         data["journal"].append(name)
-
     game["held"] = None
 
     save()
@@ -385,49 +362,36 @@ def deliver(game):
 def update(game):
     if game["state"] == "lowering":
         game["y"] += 1
-
         if game["y"] >= HEIGHT - 2:
             grab(game)
             game["state"] = "raising"
-
     elif game["state"] == "raising":
         game["y"] -= 1
-
         if game["y"] <= 1:
             game["y"] = 1
-
             if game["held"] is not None:
                 deliver(game)
-
             game["state"] = "ready"
-
 
 def finish(game, reason):
     if not game["running"]:
         return
-
     game["running"] = False
     game["message"] = reason
-
     if game["lives_lost"] == 0:
         unlock(game, "untouchable")
-
     play_sound("gameover")
-
     data["scores"].append({
         "mode": game["mode"],
         "score": game["score"],
         "date": time.strftime("%Y-%m-%d %H:%M")
     })
-
     data["scores"].sort(
         key=lambda item: item["score"],
         reverse=True
     )
     data["scores"] = data["scores"][:5]
-
     save()
-
 
 def check_end(game):
     if game["lives"] <= 0:
@@ -442,27 +406,21 @@ def check_end(game):
     elif game["credits"] <= 0 and game["state"] == "ready":
         finish(game, "Out of credits!")
 
-
 def show_records():
     os.system("cls")
-
     print("          ARCADE RECORDS          ")
-
     print("\nTOP SCORES")
     for entry in data["scores"]:
         print(entry["score"], "points -", entry["mode"], "-", entry["date"])
-
     print("\nACHIEVEMENTS")
     for achievement in data["achievements"]:
         print("-", ACHIEVEMENTS[achievement])
-
     print("\nPRIZE JOURNAL")
     for prize in data["journal"]:
         print("-", prize)
 
     print("\nPress any key to return.")
     msvcrt.getwch()
-
 
 def play(game):
     global sound_on
@@ -474,10 +432,8 @@ def play(game):
     try:
         while game["running"]:
             now = time.monotonic()
-
             if msvcrt.kbhit():
                 key = msvcrt.getwch().lower()
-
                 if key == "q":
                     finish(game, "You left the machine.")
                 elif key == "m":
@@ -498,15 +454,12 @@ def play(game):
                         game["state"] = "lowering"
                         game["message"] = "Claw descending"
                         play_sound("drop")
-
             if now - last_update >= 0.12:
                 update(game)
                 check_end(game)
                 draw(game)
                 last_update = now
-
             time.sleep(0.01)
-
     finally:
         sys.stdout.write("\x1b[?25h\n")
         sys.stdout.flush()
