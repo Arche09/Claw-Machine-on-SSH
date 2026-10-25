@@ -10,17 +10,14 @@ from pathlib import Path
 WIDTH = 40
 HEIGHT = 20
 PANEL = 24
-
 SAVE_FILE = Path("claw_data.json")
 SOUND_FOLDER = Path("sounds")
-
 PRIZES = [
     ("o", "Common", 10, 0.90, 5),
     ("+", "Uncommon", 25, 0.75, 20),
     ("*", "Rare", 50, 0.45, 30),
     ("@", "Legendary", 100, 0.15, 80)
 ]
-
 SOUND_FILES = {
     "move": "move.wav",
     "drop": "drop.wav",
@@ -35,21 +32,17 @@ SOUND_FILES = {
 def play_sound(name):
     if not sound_on:
         return
-
     filename = SOUND_FILES.get(name)
     if filename is None:
         return
-
     path = SOUND_FOLDER / filename
-
     if path.exists():
         winsound.PlaySound(
             str(path),
-            winsound.SND_FILENAME | winsound.SND_ASYNC
+           winsound.SND_FILENAME | winsound.SND_ASYNC
         )
     else:
         print(f"Sound not found: {path}")
-
 
 COMMENTS = ["The claw is doing its best.. *allegedly*",
             "Your accountant would like a word",
@@ -60,7 +53,6 @@ COMMENTS = ["The claw is doing its best.. *allegedly*",
             "An investment in shiny things",
             "The claw requests a performance review"
            ]
-
 ACHIEVEMENTS = {
     "first": "First Contact",
     "legendary": "The Chosen One",
@@ -77,13 +69,11 @@ data = {
     "achievements": [],
     "journal": []
 }
-
 try:
     with SAVE_FILE.open("r", encoding="utf-8") as file:
         data.update(json.load(file))
 except (OSError, ValueError):
     pass
-
 sound_on = True
 
 def save():
@@ -91,12 +81,11 @@ def save():
         json.dump(data, file, indent=4)
 
 
+
 def play_sound(name):
     if not sound_on:
         return
-
     path = SOUND_FOLDER / SOUND_FILES[name]
-
     if path.exists():
         try:
             winsound.PlaySound(
@@ -109,31 +98,24 @@ def play_sound(name):
 
 def new_objects():
     positions = []
-
     while len(positions) < 12:
         position = (
             random.randint(1, WIDTH - 2),
             random.randint(2, HEIGHT - 3)
         )
-
         if position not in positions:
             positions.append(position)
-
     hazard_count = random.randint(0, 2)
     hazard_positions = random.sample(range(12), hazard_count)
-
     objects = []
-
     for i in range(12):
         x, y = positions[i]
-
         objects.append({
             "x": x,
             "y": y,
             "type": random.randint(0, 3),
             "hazard": i in hazard_positions
         })
-
     return objects
 
 
@@ -148,7 +130,6 @@ def start_game(mode):
         lives = 5
     elif mode == "Challenge":
         credits = 10
-
     return {
         "mode": mode,
         "credits": credits,
@@ -176,15 +157,12 @@ def start_game(mode):
 def unlock(game, achievement_id):
     if achievement_id in data["achievements"]:
         return
-
     data["achievements"].append(achievement_id)
     save()
-
     game["message"] = (
         "ACHIEVEMENT UNLOCKED: "
         + ACHIEVEMENTS[achievement_id]
     )
-
     play_sound("achievement")
 
 
@@ -215,25 +193,20 @@ def text_at(row, x, text):
 
 def draw(game):
     lines = []
-
     lines.append(
         "+" + "-" * (WIDTH - 2)
         + "+" + "-" * (PANEL - 2) + "+"
     )
-
     for y in range(1, HEIGHT - 1):
         main = [" "] * (WIDTH - 2)
         side = [" "] * (PANEL - 2)
-
         for obj in game["objects"]:
             if obj["y"] == y:
                 main[obj["x"] - 1] = PRIZES[obj["type"]][0]
-
         if y < game["y"]:
             main[game["x"] - 1] = "|"
         elif y == game["y"]:
             main[game["x"] - 1] = "Ω"
-
         if y == 2:
             text_at(side, 1, "DROP BOX")
         elif y == 3:
@@ -260,32 +233,26 @@ def draw(game):
             text_at(side, 0, "|")
             text_at(side, PANEL - 3, "|")
             start = (y - 14) * (PANEL - 4)
-
             for i, prize_type in enumerate(
                 game["collected"][start:start + PANEL - 4]
             ):
                 side[i + 1] = PRIZES[prize_type][0]
         elif y == 16:
             text_at(side, 0, "+" + "-" * (PANEL - 4) + "+")
-
         lines.append(
             "|" + "".join(main) + "|" + "".join(side) + "|"
         )
-
     lines.append(
         "+" + "-" * (WIDTH - 2)
         + "+" + "-" * (PANEL - 2) + "+"
     )
-
     lines.append(game["message"])
-
     if game["mode"] == "Speedrun":
         remaining = max(
             0,
             60 - int(time.monotonic() - game["start_time"])
         )
         lines.append("Time left: " + str(remaining) + " seconds")
-
     sys.stdout.write("\x1b[H" + "\n".join(lines) + "\n")
     sys.stdout.flush()
 
@@ -294,7 +261,6 @@ def lose_life(game, reason):
     game["lives"] -= 1
     game["lives_lost"] += 1
     game["message"] = reason
-
 
 def grab(game):
     candidates = []
@@ -326,7 +292,6 @@ def grab(game):
     game["held"] = obj
     game["message"] = "Prize grabbed!"
     play_sound("grab")
-
 
 def deliver(game):
     obj = game["held"]
