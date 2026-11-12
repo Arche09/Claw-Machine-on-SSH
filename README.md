@@ -38,19 +38,27 @@ be authorized.
 
 ## CONNECTION TO THE GAME
 Connect to the game via:
+
 ssh -p 56536 USERNAME@bore.pub
 
 Replace USERNAME with your own
+
 (If unable to connect contact the owner AKA me on slack {Arche})
 ## START PLAYING
+
 After a successful connection, start playing. Instructions are given on screen aswell.
+
 A - move left
+
 D - Move right
+
 S - Drop the claw
+
 Q - QUIT
 
 # LOCALLY
 Install "claw_machine.py" and "Sounds" folder
+
 then Run the "claw_machine.py" as administrator (Terminal) and then enter python claw_machine.py
 
 
