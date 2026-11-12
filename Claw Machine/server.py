@@ -13,34 +13,21 @@ from pathlib import Path
 BASE_DIR = Path (__file__).resolve().parent
 GAME_FILE = BASE_DIR / "claw_machine_linux.py"
 HOST_KEY = BASE_DIR / "game_host_key"
-PLAYER_KEYS_DIR = BASE_DIR / "player_keys"
 
-HOST = "0.0.0.0"
+HOST = "127.0.0.1"
 PORT = 2222
-AUTHORIZED_PLAYERS = {}
 
-for key_file in PLAYER_KEYS_DIR.glob("*.pub"):
-    username = key_file.stem
-
-    try:
-        AUTHORIZED_PLAYERS[username] = asyncssh.import_public_key(
-            key_file.read_bytes()
-        )
-    except Exception as error:
-        print(f"Could not load {key_file.name}: {error}")
-        
 class GameSSHServer(asyncssh.SSHServer):
 
     def begin_auth(self, username):
-        return True
+        return False
 
-    def public_key_auth_supported(self):
-        return True
+    def connection_requested(self, dest_host, dest_port,
+                              orig_host, orig_port):
+        return False
 
-    def validate_public_key(self, username, key):
-        authorized_key = AUTHORIZED_PLAYERS.get(username)
-
-        return authorized_key is not None and key == authorized_key
+    def server_requested(self, listen_host, listen_port):
+        return False
 
 async def run_game(process):
 
@@ -52,10 +39,6 @@ async def run_game(process):
 
     if not process.term_type:
         process.stdout.write("A terminal is required.\r\n")
-        process.exit(1)
-        return
-
-    if username not in AUTHORIZED_PLAYERS:
         process.exit(1)
         return
 
@@ -118,8 +101,6 @@ async def run_game(process):
                 if not data:
                     break
 
-                print(f"RK: {data!r}, flush=True")
-
                 os.write(master_fd, data.encode("utf-8"))
 
         output_task = asyncio.create_task(send_output())
@@ -167,11 +148,7 @@ async def run_game(process):
 
 async def main():
 
-    print("Starting Claw Machine SSH Server...")
-    print(f"Authorized players: {list(AUTHORIZED_PLAYERS)}")
-
-    if not AUTHORIZED_PLAYERS:
-        raise RuntimeError("No authorized player keys found.")
+    print("Starting Claw Machine SSH Server..")
 
     async with asyncssh.create_server(
         GameSSHServer,
@@ -179,7 +156,8 @@ async def main():
         PORT,
         server_host_keys=[str(HOST_KEY)],
         process_factory=run_game,
-        encoding="utf-8"
+        encoding="utf-8",
+        line_editor=False
     ):
         print(f"Game server listening on port {PORT}.")
         await asyncio.Future()
@@ -190,5 +168,3 @@ if __name__ == "__main__":
         asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):
         print("Game server stopped.")
-
-
