@@ -28,8 +28,10 @@ Find the public key file. The default location is:
 Operating system   Public key file
 
 Windows            %USERPROFILE%\\.ssh\\id_ed25519.pub
- macOS              ~/.ssh/id_ed25519.pub
- Linux              ~/.ssh/id_ed25519.pub
+
+macOS              ~/.ssh/id_ed25519.pub
+
+Linux              ~/.ssh/id_ed25519.pub
 
 Share the contents of the .pub file only with the host so it can
 be authorized.
