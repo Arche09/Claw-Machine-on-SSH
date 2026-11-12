@@ -35,7 +35,7 @@ be authorized.
 
 ## CONNECTION TO THE GAME
 Connect to the game via:
-ssh -p 56363 USERNAME@bore.pub
+ssh -p 56536 USERNAME@bore.pub
 
 Replace USERNAME with your own
 (If unable to connect contact the owner AKA me on slack {Arche})
