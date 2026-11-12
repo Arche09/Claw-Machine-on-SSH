@@ -63,15 +63,23 @@ then Run the "claw_machine.py" as administrator (Terminal) and then enter python
 
 
 # GAME MODES
+
 Normal                  5 credits, 3 lives      The standard game mode.
+
 Speedrun                999 credits             Play with a large credit supply and scoring quicly
+
 Collector               20 credits, 5 lives     Focus on collecting and earning achievements
+
 Challenge               10 credits              As the name suggests, its a challenge 
 
 ## Prize and Scoring
+
 Common             10
+
 Uncommon           25
+
 Rare               50
+
 Ultra Rare        100
 
 The game also uses credits and lives
