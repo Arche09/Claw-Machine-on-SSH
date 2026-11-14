@@ -20,7 +20,8 @@ To simply connect, go to connection to the game page!
 The instructions would be different for windows and mac/linux
 
 ## Generate a player key
-ssh-keygen -t ed25519 
+######
+    ssh-keygen -t ed25519 
 
 ## Submit the public key
 Find the public key file. The default location is:
@@ -38,9 +39,12 @@ be authorized.
 
 ## CONNECTION TO THE GAME
 Connect to the game via:
-###### ssh -p 60529 USERNAME@bore.pub
+######
+    ssh -p 60529 USERNAME@bore.pub
 
-(or is that doesnt work try ssh -p 60529 USERNAME@159.223.110.159)
+or if that doesnt work try 
+######
+       ssh -p 60529 USERNAME@159.223.110.159
 
 Replace USERNAME with your own
 
