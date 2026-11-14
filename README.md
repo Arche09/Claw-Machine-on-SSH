@@ -39,7 +39,7 @@ be authorized.
 ## CONNECTION TO THE GAME
 Connect to the game via:
 
-ssh -p 32553 USERNAME@bore.pub
+ssh -p 60529 USERNAME@bore.pub
 
 (or is that doesnt work try ssh -p 60529 USERNAME@159.223.110.159)
 
