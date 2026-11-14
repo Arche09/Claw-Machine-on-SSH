@@ -94,4 +94,6 @@ The game also uses credits and lives
 *AI help was taken (unfortunately i ran into errors which i lowkey couldnt figure out along with learning a few things)*
   *Took help from youtube, google etc aswell*
 
-  Will try to add more awesome features/gamemodes aswell
+# Planning to add new features and bug fixes by december mid
+# Features like, buying tokens and lives, toggling off lives, New game modes with fun twists etc
+# Bug fixes include the fixing of the message under the claw machine
