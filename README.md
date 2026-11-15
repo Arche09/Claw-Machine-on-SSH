@@ -17,27 +17,6 @@ You can play it either over SSH or locally. I would suggest playing over SSH as 
 To simply connect, go to connection to the game page!
 
 # OVER SSH
-The instructions would be different for windows and mac/linux
-
-## Generate a player key
-######
-    ssh-keygen -t ed25519 
-
-## Submit the public key
-Find the public key file. The default location is:
-
-Operating system   Public key file
-
-Windows            %USERPROFILE%\\.ssh\\id_ed25519.pub
-
-macOS              ~/.ssh/id_ed25519.pub
-
-Linux              ~/.ssh/id_ed25519.pub
-
-Share the contents of the .pub file only with the host so it can
-be authorized.
-
-## CONNECTION TO THE GAME
 Connect to the game via:
 ######
     ssh -p 60529 USERNAME@bore.pub
@@ -49,6 +28,8 @@ or if that doesnt work try
 Replace USERNAME with your own
 
 (If unable to connect contact the owner AKA me on slack {Arche})
+
+upon entering, it will ask you to accept the fingerprint, type 'yes' and press enter
 ## START PLAYING
 
 After a successful connection, start playing. Instructions are given on screen aswell.
