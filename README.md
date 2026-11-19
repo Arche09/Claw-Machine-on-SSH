@@ -16,6 +16,10 @@ This is the ending screen after we either quit or lose our lives or finish our c
 
 In this image you can clearly see that you have your own save file per user, so if you are over ssh, make sure to remember your username (Remember it exactly, as it is case sensetive aswell)
 
+### Planning to add new features and bug fixes by december mid
+### Features like, buying tokens and lives, toggling off lives, New game modes with fun twists etc
+### Bug fixes include the fixing of the message under the claw machine
+
 # HOW TO RUN THE GAME
 You can play it either over SSH or locally. I would suggest playing over SSH as you would not have to download anything over your personal computer but If you were to play locally, you could potentially have a smoother gameplay plus sound! (Though the sound system would work only over windows, sorry for that) 
 To simply connect, go to connection to the game page!
@@ -78,7 +82,3 @@ The game also uses credits and lives
 
 *AI help was taken (unfortunately i ran into errors which i lowkey couldnt figure out along with learning a few things)*
   *Took help from youtube, google etc aswell*
-
-# Planning to add new features and bug fixes by december mid
-# Features like, buying tokens and lives, toggling off lives, New game modes with fun twists etc
-# Bug fixes include the fixing of the message under the claw machine
