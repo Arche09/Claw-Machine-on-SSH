@@ -12,6 +12,10 @@ This is how the classis mode is right now, we have credits which are basically t
 
 This is the ending screen after we either quit or lose our lives or finish our credits
 
+<img width="662" height="383" alt="image" src="https://github.com/user-attachments/assets/4bac1d64-c34c-450d-9984-1ecb642e0d22" />
+
+In this image you can clearly see that you have your own save file per user, so if you are over ssh, make sure to remember your username (Remember it exactly, as it is case sensetive aswell)
+
 # HOW TO RUN THE GAME
 You can play it either over SSH or locally. I would suggest playing over SSH as you would not have to download anything over your personal computer but If you were to play locally, you could potentially have a smoother gameplay plus sound! (Though the sound system would work only over windows, sorry for that) 
 To simply connect, go to connection to the game page!
