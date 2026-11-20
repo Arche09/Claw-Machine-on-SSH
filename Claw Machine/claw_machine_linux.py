@@ -126,7 +126,7 @@ def new_objects():
 
 
 def start_game(mode):
-    credits = 5
+    credits = 10
     lives = 3
 
     if mode == "Speedrun":
@@ -312,7 +312,7 @@ def grab(game):
     symbol, name, points, chance, penalty = PRIZES[obj["type"]]
 
     if random.random() > chance:
-        lose_life(game, "MAMMA MIA!! THE PRIZE SLIPPED")
+        game["message"] = "MAMMA MIA!! THE PRIZE SLIPPED"
         game["misses"] += 1
         game["rare_streak"] = 0
         play_sound("miss")
@@ -324,7 +324,7 @@ def grab(game):
         game["score"] -= penalty
         game["hazards"] += 1
         game["rare_streak"] = 0
-        lose_life(game, "HAZARDDDD! Lost " + str(penalty) + " points!")
+        game["message"] = "HAZARDDDD! Lost " + str(penalty) + " points!")
         play_sound("hazard")
         return
 
