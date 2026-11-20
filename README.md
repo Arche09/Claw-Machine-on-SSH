@@ -31,7 +31,7 @@ Connect to the game via:
 
 or if that doesnt work try 
 ######
-       ssh -p 60529 USERNAME@159.223.110.159
+    ssh -p 60529 USERNAME@159.223.110.159
 
 Replace USERNAME with your own
 
@@ -51,9 +51,20 @@ S - Drop the claw
 Q - QUIT
 
 # LOCALLY
-Install "claw_machine.py" and "Sounds" folder
 
-then Run the "claw_machine.py" as administrator (Terminal) and then enter python claw_machine.py
+<img width="242" height="102" alt="image" src="https://github.com/user-attachments/assets/f744c978-5a93-4e69-8547-35ad7af1c2c7" />
+
+Install "claw_machine.py" (RED) and "Sounds" (GREEN) folder
+
+The file marked in green is your save file! (You dont have to download that as it gets created automatically)
+
+Also make sure the sounds file and claw_machine.py are in the same location.
+
+<img width="335" height="362" alt="image" src="https://github.com/user-attachments/assets/d4165cfa-e200-4d7a-9300-f40686cc7055" />
+
+then Run the "claw_machine.py" as administrator (Terminal) and then enter 
+#####
+    python claw_machine.py
 
 
 # GAME MODES
