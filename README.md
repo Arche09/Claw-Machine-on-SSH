@@ -10,11 +10,7 @@ This is how the classis mode is right now, we have credits which are basically t
 
 <img width="323" height="191" alt="image" src="https://github.com/user-attachments/assets/7144f6f8-86b1-49ff-befd-0bca74fbfec8" />
 
-This is the ending screen after we either quit or lose our lives or finish our credits
-
-<img width="662" height="383" alt="image" src="https://github.com/user-attachments/assets/4bac1d64-c34c-450d-9984-1ecb642e0d22" />
-
-In this image you can clearly see that you have your own save file per user, so if you are over ssh, make sure to remember your username (Remember it exactly, as it is case sensetive aswell)
+This is the ending screen after we either quit, lose our lives or finish our credits
 
 ### Planning to add new features and bug fixes by december mid
 ### Features like, buying tokens and lives, New game modes with fun twists etc
@@ -69,11 +65,11 @@ then Run the "claw_machine.py" as administrator (Terminal) and then enter
 
 # GAME MODES
 
-1. Normal:                  5 credits, 3 lives      The standard game mode.
+1. Normal:                  10 credits, 3 lives      The standard game mode.
 
 2. Speedrun:                999 credits             Play with a large credit supply and scoring quicly
 
-3. Collector:               20 credits, 5 lives     Focus on collecting and earning achievements
+3. Collector:               30 credits, 999 lives     Focus on collecting and earning achievements
 
 4. Challenge:               10 credits              As the name suggests, its a challenge 
 
@@ -87,11 +83,17 @@ Rare               50
 
 Ultra Rare        100
 
+(Figure out which one is which mueheheh)
+
 The game also uses credits and lives
 # Records
 The records section contains all your achievements, the times you have played and what your score has been 
 
+<img width="662" height="383" alt="image" src="https://github.com/user-attachments/assets/4bac1d64-c34c-450d-9984-1ecb642e0d22" />
+
+In this image you can clearly see that you have your own save file per user, so if you are over ssh, make sure to remember your username (Remember it exactly, as it is case sensetive aswell)
+
 
 
 *AI help was taken (unfortunately i ran into errors which i lowkey couldnt figure out along with learning a few things)*
-  *Took help from youtube, google etc aswell*
+  *Took help from youtube, google etc*
