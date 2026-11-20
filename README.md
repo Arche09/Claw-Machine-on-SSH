@@ -17,7 +17,7 @@ This is the ending screen after we either quit or lose our lives or finish our c
 In this image you can clearly see that you have your own save file per user, so if you are over ssh, make sure to remember your username (Remember it exactly, as it is case sensetive aswell)
 
 ### Planning to add new features and bug fixes by december mid
-### Features like, buying tokens and lives, toggling off lives, New game modes with fun twists etc
+### Features like, buying tokens and lives, New game modes with fun twists etc
 ### Bug fixes include the fixing of the message under the claw machine
 
 # HOW TO RUN THE GAME
