@@ -21,6 +21,8 @@ You can play it either over SSH or locally. I would suggest playing over SSH as 
 To simply connect, go to connection to the game page!
 
 # OVER SSH
+Open Terminal/CMD/Powershell and then run the following commands,
+
 Connect to the game via:
 ######
     ssh -p 60529 USERNAME@bore.pub
@@ -29,7 +31,7 @@ or if that doesnt work try
 ######
     ssh -p 60529 USERNAME@159.223.110.159
 
-Replace USERNAME with your own
+Replace USERNAME with your own, Making sure it doesnt have any other special character than '-' or '_'
 
 (If unable to connect contact the owner AKA me on slack {Arche})
 
